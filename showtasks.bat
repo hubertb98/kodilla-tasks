@@ -9,5 +9,5 @@ echo.
 echo Error
 
 :startchrome
-timeout 5
+@timeout 5
 @start chrome.exe http://localhost:8080/crud/v1/task/getTasks
