@@ -11,6 +11,6 @@ class TrelloClientTest {
 
     @Test
     public void test() {
-        System.out.println(trelloClient.buildUrl());
+        System.out.println(trelloClient.getTrelloBoards());
     }
 }
