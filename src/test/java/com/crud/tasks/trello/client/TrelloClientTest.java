@@ -4,17 +4,12 @@ import com.crud.tasks.config.TrelloConfig;
 import com.crud.tasks.domain.CreatedTrelloCard;
 import com.crud.tasks.domain.TrelloBoardDto;
 import com.crud.tasks.domain.TrelloCardDto;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
@@ -22,10 +17,9 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.when;
 
-//@SpringBootTest
 @RunWith(MockitoJUnitRunner.class)
 public class TrelloClientTest {
 
@@ -54,7 +48,7 @@ public class TrelloClientTest {
         TrelloBoardDto[] trelloBoards = new TrelloBoardDto[1];
         trelloBoards[0] = new TrelloBoardDto("test_id", "test_board", new ArrayList<>());
 
-        String uri = new URI("http://test.com/members/test/boards?key=test&token=test&fields=name,id&lists=all").toString();
+        URI uri = new URI("http://test.com/members/test/boards?key=test&token=test&fields=name,id&lists=all");
 
         when(restTemplate.getForObject(uri, TrelloBoardDto[].class)).thenReturn(trelloBoards);
 
@@ -97,8 +91,17 @@ public class TrelloClientTest {
         assertEquals("http://test.com", newCard.getShortUrl());
     }
 
-//    @Test
-//    public void shouldReturnEmptyList() {
-//
-//    }
+    @Test
+    public void shouldReturnEmptyList() throws URISyntaxException {
+        // Given
+        URI uri = new URI("http://test.com/members/test/boards?key=test&token=test&fields=name,id&lists=all");
+
+        when(restTemplate.getForObject(uri, TrelloBoardDto[].class)).thenReturn(null);
+        // When
+        List<TrelloBoardDto> fetchedEmptyList = trelloClient.getTrelloBoards();
+
+        // Then
+        assertNotNull(fetchedEmptyList);
+        assertEquals(0, fetchedEmptyList.size());
+    }
 }

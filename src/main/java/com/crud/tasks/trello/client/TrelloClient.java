@@ -28,14 +28,14 @@ public class TrelloClient {
     @Autowired
     private TrelloConfig trelloConfig;
 
-    public String buildUrl() {
+    public URI buildUrl() {
         URI url = UriComponentsBuilder.fromHttpUrl(trelloConfig.getTrelloApiEndpoint() + "/members/" + trelloConfig.getTrelloUsername() +
                 "/boards")
                 .queryParam("key", trelloConfig.getTrelloAppKey())
                 .queryParam("token", trelloConfig.getTrelloToken())
                 .queryParam("fields", "name,id")
                 .queryParam("lists", "all").build().encode().toUri();
-        return url.toString();
+        return url;
     }
 
     public List<TrelloBoardDto> getTrelloBoards() {
