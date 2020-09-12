@@ -1,6 +1,7 @@
 package com.crud.tasks.service;
 
 import com.crud.tasks.domain.Mail;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -23,18 +24,19 @@ public class SimpleEmailServiceTest {
     @Test
     public void shouldSendEmail() {
         // Given
-        Mail mail = new Mail("test@test.com", "Test", "Test message", "cc@test.com");
+        Mail mail = new Mail("test@test.com", "Test", "Test message");
 
         SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setTo(mail.getMailTo());
         mailMessage.setSubject(mail.getSubject());
         mailMessage.setText(mail.getMessage());
-        mailMessage.setCc(mail.getToCc());
 
         // When
         simpleEmailService.send(mail);
+        String email = mail.getMailTo();
 
         // Then
+        Assert.assertEquals("test@test.com", email);
         verify(javaMailSender, times(1)).send(mailMessage);
     }
 }
