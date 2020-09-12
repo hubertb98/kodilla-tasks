@@ -23,7 +23,7 @@ public class SimpleEmailServiceTest {
     @Test
     public void shouldSendEmail() {
         // Given
-        Mail mail = new Mail("test@test.com", "Test", "Test message", "");
+        Mail mail = new Mail("test@test.com", "Test", "Test message", "cc@test.com");
 
         SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setTo(mail.getMailTo());
@@ -32,7 +32,6 @@ public class SimpleEmailServiceTest {
         mailMessage.setCc(mail.getToCc());
 
         // When
-        System.out.println(mailMessage);
         simpleEmailService.send(mail);
 
         // Then
