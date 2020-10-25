@@ -1,7 +1,6 @@
 package com.crud.tasks.service;
 
 import com.crud.tasks.domain.Mail;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -10,7 +9,9 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 
-import static org.mockito.Mockito.*;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
 public class SimpleEmailServiceTest {
@@ -36,7 +37,7 @@ public class SimpleEmailServiceTest {
         String email = mail.getMailTo();
 
         // Then
-        Assert.assertEquals("test@test.com", email);
+        assertEquals("test@test.com", email);
         verify(javaMailSender, times(1)).send(mailMessage);
     }
 }
