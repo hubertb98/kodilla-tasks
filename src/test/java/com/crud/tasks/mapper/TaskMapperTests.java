@@ -13,14 +13,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 
 @SpringBootTest
-class TaskMapperTestSuite {
+class TaskMapperTests {
     @Autowired
     private TaskMapper taskMapper;
 
     @Test
-    public void mapToTaskTest() {
+    void mapToTaskTest() {
         //Given
-        TaskDto taskDto = new TaskDto((long) 1, "title test", "content test");
+        TaskDto taskDto = new TaskDto(1, "title test", "content test");
 
         //When
         Task expectedTask = taskMapper.mapToTask(taskDto);
@@ -32,9 +32,9 @@ class TaskMapperTestSuite {
     }
 
     @Test
-    public void mapToTaskDtoTest() {
+    void mapToTaskDtoTest() {
         //Given
-        Task task = new Task((long) 1, "title test", "content test");
+        Task task = new Task(1, "title test", "content test");
 
         //When
         TaskDto expectedTaskDto = taskMapper.mapToTaskDto(task);
@@ -46,10 +46,10 @@ class TaskMapperTestSuite {
     }
 
     @Test
-    public void mapToTaskDtoListTest() {
+    void mapToTaskDtoListTest() {
         //Given
         List<Task> taskList = new ArrayList<>();
-        Task task = new Task((long) 1, "title test", "content test");
+        Task task = new Task(1, "title test", "content test");
         taskList.add(task);
 
         //When

@@ -11,7 +11,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
-class TrelloMapperTestSuite {
+class TrelloMapperTests {
     @Autowired
     private TrelloMapper trelloMapper;
 

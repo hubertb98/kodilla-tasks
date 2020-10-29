@@ -28,7 +28,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(TaskController.class)
-class TaskControllerTest {
+class TaskControllerTests {
     @Autowired
     private MockMvc mockMvc;
 
@@ -39,7 +39,7 @@ class TaskControllerTest {
     private DbService service;
 
     @Test
-    public void shouldFetchEmptyTaskList() throws Exception{
+    void shouldFetchEmptyTaskList() throws Exception{
         //Given
         List<TaskDto> taskDtoList = new ArrayList<>();
         List<Task> taskList = new ArrayList<>();
@@ -54,7 +54,7 @@ class TaskControllerTest {
     }
 
     @Test
-    public void shouldFetchTaskList() throws Exception {
+    void shouldFetchTaskList() throws Exception {
         //Given
         List<TaskDto> taskDtoList = new ArrayList<>();
         taskDtoList.add(new TaskDto(1L, "Test Title", "Test Content"));
@@ -76,7 +76,7 @@ class TaskControllerTest {
     }
 
     @Test
-    public void shouldFetchTask() throws Exception {
+    void shouldFetchTask() throws Exception {
         //Given
         long taskId = 1L;
         TaskDto taskDto = new TaskDto(1L, "Test Task", "Test Content");
@@ -95,7 +95,7 @@ class TaskControllerTest {
     }
 
     @Test
-    public void shouldCreateTask() throws Exception {
+    void shouldCreateTask() throws Exception {
         //Given
         Task task = new Task(1L, "Test Task", "Test Content");
         TaskDto taskDto = new TaskDto(1L, "Test Task", "Test Content");
@@ -115,7 +115,7 @@ class TaskControllerTest {
     }
 
     @Test
-    public void shouldDeleteTask() throws Exception {
+    void shouldDeleteTask() throws Exception {
         //Given
 
         //When & Then
@@ -125,7 +125,7 @@ class TaskControllerTest {
     }
 
     @Test
-    public void shouldUpdateTask() throws Exception {
+    void shouldUpdateTask() throws Exception {
         //Given
         TaskDto taskDto = new TaskDto(1L, "Test title", "Test content");
         TaskDto taskDtoUpdated = new TaskDto(1L, "New title", "New content");

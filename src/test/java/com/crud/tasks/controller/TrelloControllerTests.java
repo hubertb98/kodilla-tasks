@@ -29,7 +29,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(TrelloController.class)
-class TrelloControllerTest {
+class TrelloControllerTests {
     private static final String url = "https://localhost:8080/v1/trello/";
 
     @Autowired
@@ -39,7 +39,7 @@ class TrelloControllerTest {
     private TrelloFacade trelloFacade;
 
     @Test
-    public void shouldFetchEmptyTrelloBoards() throws Exception {
+    void shouldFetchEmptyTrelloBoards() throws Exception {
         //Given
         List<TrelloBoardDto> trelloBoards = new ArrayList<>();
         when(trelloFacade.fetchTrelloBoards()).thenReturn(trelloBoards);
@@ -52,7 +52,7 @@ class TrelloControllerTest {
     }
 
     @Test
-    public void shouldFetchTrelloBoards() throws Exception {
+    void shouldFetchTrelloBoards() throws Exception {
         //Given
         List<TrelloListDto> trelloLists = new ArrayList<>();
         trelloLists.add(new TrelloListDto("1", "Test List", false));
@@ -77,7 +77,7 @@ class TrelloControllerTest {
     }
 
     @Test
-    public void shouldCreateTrelloCard() throws Exception {
+    void shouldCreateTrelloCard() throws Exception {
         //Given
         TrelloCardDto trelloCardDto = new TrelloCardDto(
                 "Test",

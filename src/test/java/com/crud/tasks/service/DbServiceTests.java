@@ -12,14 +12,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
-class DbServiceTestSuite {
+class DbServiceTests {
     @Autowired
     private DbService dbService;
 
     @Test
-    public void saveAndGetTaskTest() {
+    void saveAndGetTaskTest() {
         //Given
-        Task task = new Task((long) 3, "title test", "desc test");
+        Task task = new Task(3, "title test", "desc test");
 
         //When
         dbService.saveTask(task);
@@ -34,10 +34,10 @@ class DbServiceTestSuite {
     }
 
     @Test
-    public void getAllTasksTest() {
+    void getAllTasksTest() {
         //Given
-        Task task1 = new Task((long) 1, "title test1", "desc test1");
-        Task task2 = new Task((long) 2, "title test2", "desc test2");
+        Task task1 = new Task(1, "title test1", "desc test1");
+        Task task2 = new Task(2, "title test2", "desc test2");
 
         //When
         dbService.saveTask(task1);
@@ -52,8 +52,5 @@ class DbServiceTestSuite {
             dbService.deleteTask(task1.getId());
             dbService.deleteTask(task2.getId());
         }
-
-
     }
-
 }

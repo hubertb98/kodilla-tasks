@@ -22,7 +22,7 @@ import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class TrelloFacadeTestSuite {
+class TrelloFacadeTests {
 
     @InjectMocks
     private TrelloFacade trelloFacade;
@@ -91,7 +91,7 @@ class TrelloFacadeTestSuite {
         assertEquals(1, trelloBoardDtos.size());
 
         trelloBoardDtos.forEach(trelloBoardDto -> {
-            assertEquals("1",trelloBoardDto.getId());
+            assertEquals("1", trelloBoardDto.getId());
             assertEquals("my_task", trelloBoardDto.getName());
 
             trelloBoardDto.getLists().forEach(trelloListDto -> {
