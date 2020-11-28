@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,5 +43,37 @@ public class MailCreatorService {
         context.setVariable("admin_config", adminConfig);
         context.setVariable("application_functionality", functionality);
         return templateEngine.process("mail/created-trello-card-mail", context);
+    }
+
+    public String buildDailyMail(String message) {
+        List<String> dailyList = new ArrayList<>();
+        dailyList.add("eat");
+        dailyList.add("drink");
+        dailyList.add("code");
+        dailyList.add("sleep");
+        dailyList.add("repeat");
+
+        List<String> weekendList = new ArrayList<>();
+        weekendList.add("eat");
+        weekendList.add("drink");
+        weekendList.add("chill");
+        weekendList.add("sleep");
+        weekendList.add("repeat");
+
+        boolean weekend = LocalDate.now().getDayOfWeek().equals(DayOfWeek.SATURDAY) ||
+                LocalDate.now().getDayOfWeek().equals(DayOfWeek.SUNDAY);
+
+        Context context = new Context();
+        context.setVariable("message", message);
+        context.setVariable("goodbye", "Have a nice day! :)");
+        context.setVariable("button", "Visit website");
+        context.setVariable("admin_config", adminConfig);
+        context.setVariable("tasks_url", "https://hubertb98.github.io/");
+        context.setVariable("weekend", weekend);
+        context.setVariable("date_message", "Raport z dnia:" + LocalDate.now());
+        context.setVariable("daily_list", dailyList);
+        context.setVariable("weekend_list", weekendList);
+
+        return templateEngine.process("mail/daily-mail", context);
     }
 }
