@@ -33,7 +33,7 @@ public class SimpleEmailServiceTest {
         mailMessage.setText(mail.getMessage());
 
         // When
-        simpleEmailService.send(mail);
+        simpleEmailService.send(mail, true);
         String email = mail.getMailTo();
 
         // Then
